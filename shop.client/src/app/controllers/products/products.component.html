@@ -1,0 +1,102 @@
+<div>
+  <h2>Products</h2>
+  <ul>
+    <li *ngFor="let product of products">
+      {{ product.name }} - {{ product.price | currency }}
+    </li>
+  </ul>
+
+  <h3>Add New Product</h3>
+  <form (ngSubmit)="addProduct()" #productForm="ngForm">
+    <div>
+      <label for="code">Code:</label>
+      <input
+        id="code"
+        [(ngModel)]="newProduct.code"
+        name="code"
+        required
+        minlength="3"
+        class="form-control"
+      />
+      <div
+        *ngIf="
+          productForm.controls['code']?.invalid &&
+          productForm.controls['code']?.touched
+        "
+      >
+        <small
+          class="error-message"
+          *ngIf="productForm.controls['code']?.errors?.['required']"
+          >Code is required.</small
+        >
+        <small
+          class="error-message"
+          *ngIf="productForm.controls['code']?.errors?.['minlength']"
+          >Code must be at least 3 characters long.</small
+        >
+      </div>
+    </div>
+
+    <div>
+      <label for="name">Name:</label>
+      <input
+        id="name"
+        [(ngModel)]="newProduct.name"
+        name="name"
+        required
+        minlength="3"
+        class="form-control"
+      />
+      <div
+        *ngIf="
+          productForm.controls['name']?.invalid &&
+          productForm.controls['name']?.touched
+        "
+      >
+        <small
+          class="error-message"
+          *ngIf="productForm.controls['name']?.errors?.['required']"
+          >Name is required.</small
+        >
+        <small
+          class="error-message"
+          *ngIf="productForm.controls['name']?.errors?.['minlength']"
+          >Name must be at least 3 characters long.</small
+        >
+      </div>
+    </div>
+
+    <div>
+      <label for="price">Price:</label>
+      <input
+        id="price"
+        type="number"
+        [(ngModel)]="newProduct.price"
+        name="price"
+        required
+        min="0"
+        class="form-control"
+      />
+      <div
+        *ngIf="
+          productForm.controls['price']?.invalid &&
+          productForm.controls['price']?.touched
+        "
+      >
+        <small
+          class="error-message"
+          *ngIf="productForm.controls['price']?.errors?.['required']"
+          >Price is required.</small
+        >
+        <small
+          class="error-message"
+          *ngIf="productForm.controls['price']?.errors?.['min']"
+          >Price must be greater than 0.</small
+        >
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="productForm.invalid">Add Product</button>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  </form>
+</div>
