@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
- // Upewnij się, że ścieżka jest poprawna
+
 import { Observable, catchError, throwError } from 'rxjs';
 import { Product } from '../../../models/product';
 
@@ -26,7 +26,7 @@ export class ProductService {
   addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.apiUrl, product).pipe(
       catchError(error => {
-        return throwError(error); // Rzuć błąd dalej
+        return throwError(error); 
       })
     );
   }

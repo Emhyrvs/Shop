@@ -10,7 +10,7 @@ import { ProductService } from '../../services/product-service.service';
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
   newProduct: Product = { id: '', code: '', name: '', price: 0 };
-  errorMessage: string | null = null; // Zmienna do przechowywania błędów
+  errorMessage: string | null = null; 
 
   constructor(private productService: ProductService) {}
 
@@ -44,13 +44,13 @@ export class ProductsComponent implements OnInit {
 
   resetForm(): void {
     this.newProduct = { id: '', code: '', name: '', price: 0 };
-    this.errorMessage = null; // Resetuj komunikat o błędzie
+    this.errorMessage = null; 
   }
 
   extractErrorMessage(error: any): string {
     if (error.error && typeof error.error === 'object') {
-      return Object.values(error.error).flat().join(', '); // Spłaszcz i połącz błędy
+      return Object.values(error.error).flat().join(', '); 
     }
-    return 'An unknown error occurred.'; // Ogólny komunikat o błędzie
+    return 'An unknown error occurred.'; 
   }
 }
