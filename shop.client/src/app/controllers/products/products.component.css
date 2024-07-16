@@ -24,9 +24,10 @@ li {
   transition: background 0.3s;
 }
 
-li:hover {
-  background: #dfek6e9;
-}
+  li:hover {
+    background: #dfe6e9; /* Poprawiony kolor */
+  }
+
 
 form {
   margin-top: 20px;

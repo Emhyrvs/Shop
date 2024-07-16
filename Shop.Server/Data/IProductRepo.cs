@@ -7,7 +7,7 @@ namespace Shop.Server.Data
         Task<Product> AddProductAsync(Product product);
         Task<bool> DeleteProductAsync(Guid id);
         Task<IEnumerable<Product>> GetAllProductsAsync();
-        Task<Product> GetProductByIdAsync(Guid id);
+        Task<Product?> GetProductByIdAsync(Guid id);
         Task<Product> UpdateProductAsync(Product product);
     }
 }

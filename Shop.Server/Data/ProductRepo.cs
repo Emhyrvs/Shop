@@ -24,12 +24,11 @@ namespace Shop.Server.Data
         {
             return await _context.Products.ToListAsync();
         }
-
-        public async Task<Product> GetProductByIdAsync(Guid id)
+        public async Task<Product?> GetProductByIdAsync(Guid id)
         {
-            return await _context.Products.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);
+            return product; // Możesz zwrócić null, jeśli produkt nie istnieje
         }
-
 
         public async Task<Product> UpdateProductAsync(Product product)
         {

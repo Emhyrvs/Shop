@@ -19,28 +19,31 @@ export class ProductsComponent implements OnInit {
   }
 
   loadProducts(): void {
-    this.productService.getProducts().subscribe(
-      (products) => {
+    this.productService.getProducts().subscribe({
+      next: (products) => {
         this.products = products;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error loading products', error);
+        // Możesz również ustawić komunikat o błędzie lub obsłużyć go w inny sposób
       }
-    );
+    });
   }
 
+
   addProduct(): void {
-    this.productService.addProduct(this.newProduct).subscribe(
-      (product: Product) => {
+    this.productService.addProduct(this.newProduct).subscribe({
+      next: (product: Product) => {
         this.products.push(product);
         this.resetForm();
       },
-      (error) => {
+      error: (error) => {
         this.errorMessage = this.extractErrorMessage(error);
         console.error('Error adding product', error);
       }
-    );
+    });
   }
+
 
   resetForm(): void {
     this.newProduct = { id: '', code: '', name: '', price: 0 };
